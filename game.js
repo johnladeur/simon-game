@@ -5,11 +5,24 @@ var gamePattern = [];
 
 var userClickedPattern = [];
 
+var gameStarted = false;
+
+var level = 0;
+$(document).keypress(function(e){
+     if (gameStarted == false){
+         nextSequence();
+         gameStarted = true;
+
+        $("h1").text("Level " + level);
+     } 
+ })
+
 $(".btn").click(function(e){
     var userChosenColor = $(this).attr("id"); 
     userClickedPattern.push(userChosenColor);
     console.log(userClickedPattern);
     playSound(userChosenColor);
+    animatedPress(userChosenColor);
 });
 
 function nextSequence(){
@@ -28,5 +41,13 @@ function playSound(name){
 var audio = new Audio('sounds/' + name + '.mp3');
 audio.play();
 
+};
+
+function animatedPress(currentColor){
+    $("#" + currentColor).addClass("pressed");
+
+    setTimeout(function() {
+        $("#" + currentColor).removeClass("pressed");
+    }, 50);
 };
 
