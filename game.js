@@ -9,13 +9,14 @@ var buttonColors = [
     "yellow"
 ];
 
-var randomChosenColor =  buttonColors[randomNumber];
-var randomNumber = Math.floor(Math.random()* 4);
 function nextSequence(){
-    var randomNumber
-   console.log(randomNumber)
-};
+var randomNumber = Math.floor(Math.random()* 4);
+var randomChosenColor =  buttonColors[randomNumber];
+gamePattern.push(randomChosenColor);
 
-$("#red").on("click", function(){
-    $("#red").fadeOut(25).fadeIn(25).fadeOut(25).fadeIn(25);
-});
+$("#" + randomChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
+
+var audio = new Audio('sounds/' + randomChosenColor + '.mp3');
+audio.play();
+
+};
